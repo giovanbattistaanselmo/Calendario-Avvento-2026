@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="it">
+
+    <head>
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Per L'Amore Mio</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;600&family=Lora:wght@500;600&family=Montserrat:wght@400;500&family=Pacifico&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="style.css">
+
+    </head>
+
+        <body>
+            <p class="occhiello">DAL TUO AMORE - CHRISTMAS 2026 </p>
+            <h1>Dicembre per L'Amore Mio</h1>
+            <p class="sottotitolo">Un piccolo pensierino per accompagnarti fino a Natale</p>
+
+            <!-- SEPARATORE CON ALBERELLO E STELLINE -->
+        <div class="separatore-natale" aria-hidden="true">
+            <span class="linea"></span>
+            <span class="stelle">★ ★</span>
+            <svg class="alberello-svg" viewBox="0 0 64 72" xmlns="http://www.w3.org/2000/svg">
+                <!-- Stella in cima -->
+                <polygon points="32,2 34.8,8.5 41.8,9.2 36.4,13.8 38,20.6 32,16.9 26,20.6 27.6,13.8 22.2,9.2 29.2,8.5" fill="#f7e7b4"/>
+                <!-- Chioma a tre piani -->
+                <polygon points="32,16 18,34 46,34" fill="#f7e7b4"/>
+                <polygon points="32,27 13,48 51,48" fill="#f7e7b4"/>
+                <polygon points="32,39 8,62 56,62" fill="#f7e7b4"/>
+                <!-- Tronco -->
+                <rect x="28" y="62" width="8" height="8" rx="1.5" fill="#d4a353"/>
+            </svg>
+            <span class="stelle">★ ★</span>
+            <span class="linea"></span>
+        </div>
+
+            <div class="griglia" id="griglia"></div>
+            <!-- CARTELLINO REGALO BLOCCATO -->
+                <div id="biglietto-overlay" class="biglietto-overlay">
+                    <div class="cartellino">
+                        <div class="cordoncino"></div>
+                            <div class="foro"></div>
+                        <button id="chiudi-biglietto" class="chiudi-biglietto">&times;</button>
+                        <span id="biglietto-etichetta" class="cartellino-data">1 Dicembre</span>
+                        <h3 id="biglietto-titolo"></h3>
+                        <p id="biglietto-testo"></p>
+                    </div>
+                </div>
+
+            <script src="javascript.js"></script>
+
+        </body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

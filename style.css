@@ -1,0 +1,444 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Playfair+Display:wght@700&family=Poppins:wght@400;600;700&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: 
+        radial-gradient(circle at top, rgba(31, 64, 51, 0.1) 0%, rgba(13, 33, 25, 0.25) 100%),
+        url('sfondo.jpg') no-repeat center top fixed;
+    background-color: #153326;
+    background-size: 100% 100%;
+
+    color: #fffdf9;
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    padding: 40px 20px;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+@media (max-width: 768px) {
+    body {
+        /* Rimuove il 'fixed' che su iPhone/Android causa lo zoom eccessivo */
+        background-attachment: scroll;
+        /* Adatta l'immagine alla larghezza del telefono mantenendo le proporzioni */
+        background-size: 100% auto;
+        background-position: center top;
+        padding: 28px 14px;
+    }
+
+    /* Rende la griglia e i pacchetti più compatti e proporzionati su schermo stretto */
+    .griglia {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 38px 14px;
+    }
+
+    .cartellino {
+        max-width: 92vw;
+        padding: 42px 18px 24px;
+    }
+}
+
+.occhiello {
+    font-family: 'Montserrat', sans-serif;
+    color: #e8dec3;
+    font-size: clamp(0.85rem, 1.6vw, 1.05rem);
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.55);
+}
+
+
+h1 {
+    font-family: 'Playfair Display', serif;
+    color: #f9ecc6;
+    font-size: clamp(2.3rem, 5vw, 3.6rem);
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    line-height: 1.15;
+    margin-bottom: 8px;
+    text-shadow:
+        0 3px 10px rgba(0, 0, 0, 0.65),
+        0 0 22px rgba(243, 213, 155, 0.35);
+}
+
+.sottotitolo {
+    font-family: 'Dancing Script', cursive;
+    color: #f2e4c4;
+    font-size: clamp(1.35rem, 2.8vw, 1.85rem);
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    margin-bottom: 14px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+/* Separatore dorato con linee, stelline e alberello */
+.separatore-natale {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    max-width: 340px;
+    margin: 0 auto 48px;
+}
+
+.separatore-natale .linea {
+    flex: 1;
+    height: 1.5px;
+    background: linear-gradient(90deg, transparent, #d4a353, transparent);
+}
+
+.separatore-natale .stelle {
+    color: #e5c17b;
+    font-size: 0.7rem;
+    letter-spacing: 4px;
+}
+
+.alberello-svg {
+    width: 26px;
+    height: 30px;
+    filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.5));
+}
+
+
+
+/* Griglia con spazio verticale per i fiocchi */
+.griglia {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(115px, 1fr));
+    gap: 48px 24px;
+    max-width: 860px;
+    margin: 0 auto;
+    padding-top: 20px;
+}
+
+/* 1. composizione scatola */
+.casella {
+    position: relative;
+    aspect-ratio: 1 / 1.05;
+    border-radius: 0 0 10px 10px;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 26%;
+    cursor: pointer;
+    user-select: none;
+    transition:
+        transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.35s ease,
+        border-radius 0.35s ease;
+    /* Ombra esterna + ombra interna in alto proiettata dal coperchio */
+    box-shadow:
+        0 12px 24px rgba(0, 0, 0, 0.45),
+        inset 0 22px 14px -10px rgba(0, 0, 0, 0.25);
+
+    background:
+        /* Nastro verticale rosso con riflesso di raso al centro */
+        linear-gradient(to right,
+            transparent 42%,
+            #9e1922 42%, #e63946 48%, #ff6b74 50%, #e63946 52%, #9e1922 58%,
+            transparent 58%),
+        /* Carta panna con leggere ombre ai bordi per dare volume */
+        linear-gradient(90deg, #e8d9be 0%, #fcf6ea 18%, #f7eedc 82%, #e3d2b4 100%);
+}
+
+/* 2. coperchio animato */
+.casella::before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: -6%;
+    width: 112%;
+    height: 23%;
+    transition: transform 0.42s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease;
+    border-radius: 6px;
+    border: none;
+    z-index: 2;
+    box-shadow:
+        0 4px 8px rgba(0, 0, 0, 0.25),
+        inset 0 2px 2px rgba(255, 255, 255, 0.85);
+
+    background:
+        linear-gradient(to right,
+            transparent 42.8%,
+            #9e1922 42.8%, #e63946 48.5%, #ff6b74 50%, #e63946 51.5%, #9e1922 57.2%,
+            transparent 57.2%),
+        linear-gradient(180deg, #fffdf9 0%, #efe2c8 100%);
+}
+
+
+.casella::after {
+    display: none;
+}
+
+
+.fiocco {
+    position: absolute;
+    top: -38px; 
+    left: 50%;
+    transform: translateX(-50%);
+    width: 98%; 
+    z-index: 4;
+    transition: transform 0.42s cubic-bezier(0.34, 1.56, 0.64, 1);
+    pointer-events: none;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.35)); 
+}
+
+.fiocco svg {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* 5. medaglione con il giorno */
+.numero {
+    position: relative;
+    z-index: 5;
+    background: linear-gradient(145deg, #f9e29c 0%, #d4a353 50%, #aa7729 100%);
+    color: #7a1016; 
+    border: 1.5px solid #b79300;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.95rem;
+    font-weight: 700;
+    box-shadow: 
+        0 3px 6px rgba(0, 0, 0, 0.3),
+        inset 0 1px 2px rgba(255, 255, 255, 0.7);
+}
+
+/* 6. casella aperta*/
+.casella.aperta {
+    background: #16283b;
+    border: 2px dashed #e5b869;
+    border-radius: 10px;
+    padding-top: 0;
+    box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.35);
+}
+
+/* Quando è aperta il fiocco scompare e il numero assume un colore diverso */
+.casella.aperta .fiocco,
+.casella.aperta::before {
+    display: none;
+}
+
+.casella.aperta .numero {
+    background: transparent;
+    border: none;
+    color: #e5b869;
+    font-size: 1.3rem;
+    box-shadow: none;
+}
+/* effetto coperchio */
+.casella:not(.aperta):hover {
+    border-radius: 14px;
+    box-shadow:
+        inset 0 14px 12px -6px rgba(45, 25, 10, 0.55),
+        inset 0 4px 18px rgba(255, 215, 120, 0.45),
+        0 14px 24px rgba(0, 0, 0, 0.25);
+}
+
+.casella:not(.aperta):hover::before {
+    
+    transform: translate(5px, -38px) rotate(5deg);
+    box-shadow: 0 18px 20px -4px rgba(0, 0, 0, 0.3);
+}
+
+.casella:not(.aperta):hover .fiocco {
+    
+    transform: translateX(-50%) translate(5px, -38px) rotate(5deg);
+}
+
+
+
+
+
+
+
+
+
+/* bigliettino */
+.biglietto-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(35, 22, 10, 0.45);
+    backdrop-filter: blur(3px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    z-index: 100;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+}
+
+.biglietto-overlay.visibile {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+
+.cartellino {
+    position: relative;
+    background: linear-gradient(170deg, #fffdf9 0%, #f4e4c8 100%);
+    border: 2px solid #c99748;
+    border-radius: 26px 26px 14px 14px;
+    max-width: 310px;
+    width: 100%;
+    padding: 46px 24px 28px;
+    text-align: center;
+    max-height: 85vh;
+    overflow-y: auto;
+    box-shadow:
+        0 18px 35px rgba(0, 0, 0, 0.35),
+        inset 0 0 0 5px #fffdf9,
+        inset 0 0 0 6.5px rgba(184, 36, 43, 0.35);
+    transform-origin: top center;
+    transform: rotate(-6deg) scale(0.9);
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+
+.biglietto-overlay.visibile .cartellino {
+    transform: rotate(-2deg) scale(1);
+}
+
+
+.foro {
+    position: absolute;
+    top: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #8c6d46;
+    border: 3px solid #d4a353;
+    box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.4);
+}
+
+
+.cordoncino {
+    position: absolute;
+    top: -28px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 3px;
+    height: 44px;
+    background: linear-gradient(90deg, #8a1118, #d82531, #8a1118);
+    border-radius: 2px;
+    z-index: -1;
+}
+
+.chiudi-biglietto {
+    position: absolute;
+    top: 10px;
+    right: 14px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    line-height: 1;
+    color: #9e6b34;
+    cursor: pointer;
+}
+
+.chiudi-biglietto:hover {
+    color: #b8242b;
+}
+
+.cartellino-data {
+    display: inline-block;
+    font-family: 'Pacifico', cursive;
+    font-size: 1.05rem;
+    color: #b8242b;
+    margin-bottom: 4px;
+}
+
+.cartellino h3 {
+    font-family: 'Lora', serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #6e4416;
+    margin-bottom: 10px;
+}
+
+.cartellino p {
+    font-family: 'Lora', serif;
+    font-size: 1rem;
+    line-height: 1.55;
+    color: #3a2a18;
+}
+/* Stile per gli sticker nel biglietto */
+.cartellino p img.sticker {
+    width: 120px;
+    max-height: none;
+    height: auto;
+    object-fit: contain;
+    margin: 14px auto 0;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    background: transparent;
+}
+
+/* Stile delle foto dentro il cartellino */
+.cartellino p img {
+    display: block;
+    width: 100%;
+    max-height: 230px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 2px solid #d4a353;
+    margin: 12px auto 6px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
+}
+.cartellino p video {
+    width: 100%;
+    max-height: 260px; /* Impedisce ai video verticali di allungare troppo il biglietto */
+    margin-top: 12px;
+    border-radius: 10px;
+    border: 2px solid #d4a353;
+    object-fit: contain; /* Mantiene tutto il video visibile senza tagliare i bordi */
+    background-color: #000;
+    display: block;
+}
+
+/* Stile dei link dentro il cartellino (trasformati in pulsanti) */
+.cartellino p a {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 8px 16px;
+    background: linear-gradient(135deg, #d82531, #9e1922);
+    color: #fffdf9;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.92rem;
+    border-radius: 20px;
+    border: 1px solid #d4a353;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.cartellino p a:hover {
+    transform: scale(1.04);
+    filter: brightness(1.1);
+}
+/* Stile del riproduttore audio dentro il cartellino */
+.cartellino p audio {
+    width: 100%;
+    height: 40px;
+    margin-top: 14px;
+    border-radius: 20px;
+    outline: none;
+}
